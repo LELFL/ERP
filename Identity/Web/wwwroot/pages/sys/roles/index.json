@@ -1,0 +1,645 @@
+{
+  "type": "page",
+  "title": "角色列表",
+  "body": [
+    {
+      "id": "u:11a2b5a2cf60",
+      "type": "crud2",
+      "mode": "table2",
+      "dsType": "api",
+      "syncLocation": true,
+      "primaryField": "id",
+      "loadType": "pagination",
+      "api": {
+        "url": "/api/roles",
+        "method": "get"
+      },
+      "quickSaveItemApi": {
+        "url": "/api/roles",
+        "method": "put",
+        "requestAdaptor": "",
+        "adaptor": "",
+        "messages": {}
+      },
+      "headerToolbar": [
+        {
+          "type": "flex",
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "style": {
+            "position": "static"
+          },
+          "items": [
+            {
+              "type": "container",
+              "align": "left",
+              "behavior": [
+                "Insert",
+                "BulkEdit",
+                "BulkDelete"
+              ],
+              "body": [
+                {
+                  "type": "button",
+                  "label": "新增",
+                  "level": "primary",
+                  "className": "m-r-xs",
+                  "behavior": "Insert",
+                  "onEvent": {
+                    "click": {
+                      "actions": [
+                        {
+                          "actionType": "drawer",
+                          "drawer": {
+                            "type": "drawer",
+                            "body": [
+                              {
+                                "id": "u:0cd3e9e2a088",
+                                "type": "form",
+                                "title": "新增角色",
+                                "mode": "flex",
+                                "labelAlign": "top",
+                                "dsType": "api",
+                                "feat": "Insert",
+                                "body": [
+                                  {
+                                    "name": "name",
+                                    "label": "名称",
+                                    "row": 0,
+                                    "type": "input-text",
+                                    "id": "u:3c56ccff7a7b",
+                                    "colSize": "1/2"
+                                  },
+                                  {
+                                    "name": "description",
+                                    "label": "描述",
+                                    "row": 0,
+                                    "type": "input-text",
+                                    "id": "u:d8999d1d971a",
+                                    "colSize": "1/2"
+                                  }
+                                ],
+                                "api": {
+                                  "url": "/api/roles",
+                                  "method": "post",
+                                  "requestAdaptor": "",
+                                  "adaptor": "",
+                                  "messages": {}
+                                },
+                                "resetAfterSubmit": true,
+                                "actions": [
+                                  {
+                                    "type": "button",
+                                    "actionType": "cancel",
+                                    "label": "取消"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "actionType": "submit",
+                                    "label": "提交",
+                                    "level": "primary"
+                                  }
+                                ],
+                                "onEvent": {
+                                  "submitSucc": {
+                                    "actions": [
+                                      {
+                                        "actionType": "search",
+                                        "groupType": "component",
+                                        "componentId": "u:11a2b5a2cf60"
+                                      },
+                                      {
+                                        "actionType": "toast",
+                                        "ignoreError": false,
+                                        "args": {
+                                          "msgType": "success",
+                                          "position": "top-right",
+                                          "closeButton": true,
+                                          "showIcon": true,
+                                          "msg": "新增成功！",
+                                          "className": "theme-toast-action-scope"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            ],
+                            "title": "新增角色",
+                            "actions": [
+                              {
+                                "type": "button",
+                                "actionType": "cancel",
+                                "label": "取消",
+                                "id": "u:d76c2241e497"
+                              },
+                              {
+                                "type": "button",
+                                "actionType": "submit",
+                                "label": "提交",
+                                "level": "primary",
+                                "id": "u:bf93723f5560"
+                              }
+                            ],
+                            "actionType": "drawer",
+                            "id": "u:0cf51190ed58",
+                            "showCloseButton": true,
+                            "closeOnOutside": false,
+                            "closeOnEsc": true,
+                            "showErrorMsg": true,
+                            "showLoading": true,
+                            "draggable": false,
+                            "hideActions": false,
+                            "size": "xl",
+                            "resizable": true
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "id": "u:f87be25d17de",
+                  "disabledOnAction": false
+                },
+                {
+                  "type": "button",
+                  "label": "刷新",
+                  "behavior": "custom",
+                  "className": "m-r-xs",
+                  "onEvent": {
+                    "click": {
+                      "actions": [
+                        {
+                          "componentId": "u:11a2b5a2cf60",
+                          "ignoreError": false,
+                          "actionType": "reload"
+                        }
+                      ]
+                    }
+                  },
+                  "id": "u:404ca662907e",
+                  "disabledOnAction": false
+                }
+              ],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start"
+              },
+              "id": "u:5ce801c4fab7"
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "behavior": [
+                "FuzzyQuery"
+              ],
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:de7950216627"
+            }
+          ],
+          "id": "u:31ebddc82868"
+        }
+      ],
+      "footerToolbar": [
+        {
+          "type": "flex",
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "style": {
+            "position": "static"
+          },
+          "items": [
+            {
+              "type": "container",
+              "align": "left",
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start"
+              },
+              "id": "u:34f16c3f406d"
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "body": [
+                {
+                  "type": "pagination",
+                  "behavior": "Pagination",
+                  "layout": [
+                    "total",
+                    "perPage",
+                    "pager",
+                    "go"
+                  ],
+                  "perPage": 10,
+                  "perPageAvailable": [
+                    10,
+                    50,
+                    100
+                  ],
+                  "align": "right",
+                  "id": "u:3ec85c59c8af",
+                  "size": "",
+                  "maxButtons": 5,
+                  "mode": "normal"
+                }
+              ],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:0391e4b4e78d"
+            }
+          ],
+          "id": "u:203d7b97663e"
+        }
+      ],
+      "columns": [
+        {
+          "type": "tpl",
+          "title": "名称",
+          "name": "name",
+          "id": "u:3ba2cd6270bb"
+        },
+        {
+          "type": "tpl",
+          "title": "描述",
+          "name": "description",
+          "id": "u:42746129bb75"
+        },
+        {
+          "type": "tpl",
+          "title": "id",
+          "name": "id",
+          "id": "u:9a514044d632",
+          "placeholder": "-",
+          "visible": false
+        },
+        {
+          "type": "operation",
+          "title": "操作",
+          "buttons": [
+            {
+              "type": "button",
+              "label": "编辑",
+              "level": "link",
+              "behavior": "Edit",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "drawer",
+                      "drawer": {
+                        "type": "drawer",
+                        "body": [
+                          {
+                            "id": "u:4ad72882e970",
+                            "type": "form",
+                            "title": "编辑角色",
+                            "mode": "flex",
+                            "labelAlign": "top",
+                            "dsType": "api",
+                            "feat": "Edit",
+                            "body": [
+                              {
+                                "name": "name",
+                                "label": "名称",
+                                "row": 0,
+                                "type": "input-text",
+                                "id": "u:cfcca54decda",
+                                "colSize": "1/2"
+                              },
+                              {
+                                "name": "description",
+                                "label": "描述",
+                                "row": 0,
+                                "type": "input-text",
+                                "id": "u:d051930f52d0",
+                                "colSize": "1/2"
+                              }
+                            ],
+                            "api": {
+                              "url": "/api/roles/$id",
+                              "method": "put",
+                              "requestAdaptor": "",
+                              "adaptor": "",
+                              "messages": {}
+                            },
+                            "resetAfterSubmit": true,
+                            "initApi": {
+                              "url": "/api/roles/$id",
+                              "method": "get",
+                              "requestAdaptor": "",
+                              "adaptor": "",
+                              "messages": {}
+                            },
+                            "actions": [
+                              {
+                                "type": "button",
+                                "actionType": "cancel",
+                                "label": "取消"
+                              },
+                              {
+                                "type": "button",
+                                "actionType": "submit",
+                                "label": "提交",
+                                "level": "primary"
+                              }
+                            ],
+                            "onEvent": {
+                              "submitSucc": {
+                                "actions": [
+                                  {
+                                    "actionType": "search",
+                                    "groupType": "component",
+                                    "componentId": "u:11a2b5a2cf60"
+                                  },
+                                  {
+                                    "actionType": "toast",
+                                    "ignoreError": false,
+                                    "args": {
+                                      "msgType": "success",
+                                      "position": "top-right",
+                                      "closeButton": true,
+                                      "showIcon": true,
+                                      "msg": "修改成功！",
+                                      "className": "theme-toast-action-scope"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "title": "编辑角色",
+                        "size": "xl",
+                        "actions": [
+                          {
+                            "type": "button",
+                            "actionType": "cancel",
+                            "label": "取消",
+                            "id": "u:aecbf13b0e23"
+                          },
+                          {
+                            "type": "button",
+                            "actionType": "submit",
+                            "label": "提交",
+                            "level": "primary",
+                            "id": "u:94dc1a11bc3a"
+                          }
+                        ],
+                        "actionType": "drawer",
+                        "id": "u:61ecc9f1d6f4",
+                        "showCloseButton": true,
+                        "closeOnOutside": false,
+                        "closeOnEsc": true,
+                        "showErrorMsg": true,
+                        "showLoading": true,
+                        "draggable": false,
+                        "resizable": true
+                      }
+                    }
+                  ]
+                }
+              },
+              "id": "u:11439b7ea8d6",
+              "disabledOnAction": false
+            },
+            {
+              "type": "button",
+              "label": "删除",
+              "behavior": "Delete",
+              "className": "m-r-xs text-danger",
+              "level": "link",
+              "confirmText": "确认要删除角色",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "ajax",
+                      "api": {
+                        "url": "/api/roles/$id",
+                        "method": "delete",
+                        "requestAdaptor": "",
+                        "adaptor": "",
+                        "messages": {}
+                      },
+                      "data": {
+                        "&": "$$"
+                      }
+                    },
+                    {
+                      "actionType": "search",
+                      "groupType": "component",
+                      "componentId": "u:11a2b5a2cf60"
+                    },
+                    {
+                      "actionType": "toast",
+                      "ignoreError": false,
+                      "args": {
+                        "msgType": "success",
+                        "position": "top-right",
+                        "closeButton": true,
+                        "showIcon": true,
+                        "msg": "删除成功！",
+                        "className": "theme-toast-action-scope"
+                      }
+                    }
+                  ]
+                }
+              },
+              "id": "u:b0af6db1bb22"
+            },
+            {
+              "type": "button",
+              "label": "权限",
+              "id": "u:1108e1ee1849",
+              "disabledOnAction": false,
+              "onEvent": {
+                "click": {
+                  "weight": 0,
+                  "actions": [
+                    {
+                      "ignoreError": false,
+                      "actionType": "drawer",
+                      "drawer": {
+                        "type": "drawer",
+                        "title": "分配权限",
+                        "body": [
+                          {
+                            "id": "u:26eec5d8a19e",
+                            "type": "form",
+                            "title": "表单",
+                            "mode": "flex",
+                            "labelAlign": "top",
+                            "dsType": "api",
+                            "feat": "Edit",
+                            "body": [
+                              {
+                                "type": "input-tree",
+                                "label": "",
+                                "name": "permissionIds",
+                                "multiple": true,
+                                "cascade": true,
+                                "autoCancelParent": false,
+                                "id": "u:e3aaa7e77a1a",
+                                "autoCheckChildren": true,
+                                "nodeBehavior": [
+                                  "check"
+                                ],
+                                "themeCss": {
+                                  "actionControlClassName": {
+                                    "marginLeft": ""
+                                  }
+                                },
+                                "enableNodePath": false,
+                                "hideRoot": true,
+                                "showIcon": true,
+                                "initiallyOpen": true,
+                                "source": {
+                                  "url": "/api/permissions",
+                                  "method": "get"
+                                },
+                                "labelField": "description",
+                                "valueField": "id",
+                                "heightAuto": true,
+                                "wrapperCustomStyle": {
+                                  ".cxd-TreeControl": {
+                                    "height": "100%"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "hidden",
+                                "name": "id"
+                              }
+                            ],
+                            "api": {
+                              "url": "/api/roles/${id}/permissions",
+                              "method": "put",
+                              "requestAdaptor": "",
+                              "adaptor": "",
+                              "messages": {}
+                            },
+                            "actions": [
+                              {
+                                "type": "button",
+                                "label": "提交",
+                                "onEvent": {
+                                  "click": {
+                                    "actions": [
+                                      {
+                                        "actionType": "submit",
+                                        "componentId": "u:26eec5d8a19e"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "level": "primary"
+                              }
+                            ],
+                            "resetAfterSubmit": true,
+                            "initApi": {
+                              "method": "get",
+                              "url": "/api/roles/${id}/permissions",
+                              "requestAdaptor": "",
+                              "adaptor": "",
+                              "messages": {},
+                              "responseData": {
+                                "permissionIds": "${result}"
+                              }
+                            },
+                            "wrapperCustomStyle": {
+                              "root": {
+                                "height": "100%"
+                              }
+                            }
+                          }
+                        ],
+                        "id": "u:66e95519c3b1",
+                        "actions": [
+                          {
+                            "type": "button",
+                            "actionType": "cancel",
+                            "label": "取消",
+                            "id": "u:2f77fafbd4bd"
+                          },
+                          {
+                            "type": "button",
+                            "actionType": "confirm",
+                            "label": "确定",
+                            "primary": true,
+                            "id": "u:16098f6ea5fb"
+                          }
+                        ],
+                        "showCloseButton": true,
+                        "closeOnOutside": false,
+                        "closeOnEsc": false,
+                        "showErrorMsg": true,
+                        "showLoading": true,
+                        "draggable": false,
+                        "actionType": "drawer",
+                        "size": "xl"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "id": "u:25cab3502a53"
+        }
+      ],
+      "editorSetting": {
+        "mock": {
+          "enable": true,
+          "maxDisplayRows": 5
+        }
+      }
+    }
+  ],
+  "id": "u:06f8316bfa76",
+  "asideResizor": false,
+  "pullRefresh": {
+    "disabled": true
+  },
+  "definitions": {}
+}

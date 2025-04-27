@@ -1,0 +1,9 @@
+{
+  "help": "https://learn.microsoft.com/en-us/visualstudio/ide/file-nesting-schema",
+  "dependentFileProviders": {
+    "add": {
+      "pathSuffix": ".g.cs",
+      "relatedFiles": [ ".cs" ]
+    }
+  }
+}

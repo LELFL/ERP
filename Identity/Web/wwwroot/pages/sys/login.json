@@ -1,0 +1,293 @@
+{
+  "type": "page",
+  "title": "",
+  "body": [
+    {
+      "type": "flex",
+      "items": [
+        {
+          "type": "container",
+          "body": [],
+          "size": "none",
+          "style": {
+            "position": "static",
+            "display": "block",
+            "flex": "1 1 auto",
+            "flexGrow": 1,
+            "flexBasis": 0
+          },
+          "wrapperBody": false,
+          "isFixedHeight": false,
+          "isFixedWidth": false,
+          "id": "u:da9f5139214b"
+        },
+        {
+          "type": "container",
+          "body": [],
+          "size": "none",
+          "style": {
+            "position": "static",
+            "display": "block",
+            "flex": "1 1 auto",
+            "flexGrow": 1,
+            "flexBasis": 0
+          },
+          "wrapperBody": false,
+          "isFixedHeight": false,
+          "isFixedWidth": false,
+          "id": "u:709784de74c7"
+        },
+        {
+          "type": "container",
+          "body": [],
+          "size": "none",
+          "style": {
+            "position": "static",
+            "display": "block",
+            "flex": "1 1 auto",
+            "flexGrow": 1,
+            "flexBasis": 0
+          },
+          "wrapperBody": false,
+          "isFixedHeight": false,
+          "isFixedWidth": false,
+          "id": "u:d65b525b2271"
+        }
+      ],
+      "style": {
+        "position": "relative",
+        "rowGap": "10px",
+        "columnGap": "10px"
+      },
+      "id": "u:110c896888e8"
+    },
+    {
+      "type": "flex",
+      "items": [
+        {
+          "type": "container",
+          "body": [],
+          "size": "none",
+          "style": {
+            "position": "static",
+            "display": "block",
+            "flex": "1 1 auto",
+            "flexGrow": 1,
+            "flexBasis": "0px",
+            "overflowY": "visible"
+          },
+          "wrapperBody": false,
+          "isFixedHeight": false,
+          "isFixedWidth": false,
+          "id": "u:9386be00e8dc"
+        },
+        {
+          "type": "container",
+          "body": [
+            {
+              "id": "u:b32bc4f3150d",
+              "type": "form",
+              "title": "登录",
+              "body": [
+                {
+                  "type": "input-text",
+                  "id": "u:1978e56e31de",
+                  "name": "username",
+                  "label": "用户名",
+                  "row": 0
+                },
+                {
+                  "type": "input-password",
+                  "id": "u:d60dfd6da3b2",
+                  "name": "password",
+                  "label": "密码",
+                  "row": 1,
+                  "showCounter": false,
+                  "validations": {},
+                  "validationErrors": {}
+                }
+              ],
+              "mode": "flex",
+              "labelAlign": "top",
+              "dsType": "api",
+              "feat": "Insert",
+              "api": {
+                "url": "/api/connect/token",
+                "method": "post",
+                "requestAdaptor": "",
+                "adaptor": "console.log(payload)\r\nwindow.userService.setToken(payload.data)\r\nwindow.location.href = window.clientUrl;",
+                "messages": {},
+                "data": {
+                  "grant_type": "password",
+                  "client_id": "employee_client",
+                  "client_secret": "ds1fa2d1g23sg456dsda4g6s63.-45sj",
+                  "scope": "api offline_access",
+                  "username": "$username",
+                  "password": "$password"
+                },
+                "dataType": "form"
+              },
+              "actions": [
+                {
+                  "type": "button",
+                  "label": "登录",
+                  "onEvent": {
+                    "click": {
+                      "actions": [
+                        {
+                          "actionType": "submit",
+                          "componentId": "u:b32bc4f3150d"
+                        }
+                      ]
+                    }
+                  },
+                  "level": "primary",
+                  "id": "u:cf71a5efca45",
+                  "disabledOnAction": false,
+                  "block": true
+                }
+              ],
+              "resetAfterSubmit": true,
+              "themeCss": {
+                "headerTitleControlClassName": {
+                  "font": {
+                    "text-align": "center",
+                    "vertical-align": "middle",
+                    "fontWeight": "var(--fonts-weight-3)",
+                    "lineHeight": "var(--fonts-lineHeight-3)",
+                    "fontSize": "var(--fonts-size-6)"
+                  }
+                },
+                "headerControlClassName": {
+                  "border": {
+                    "top-border-style": "var(--borders-style-2)",
+                    "left-border-style": "var(--borders-style-2)",
+                    "right-border-style": "var(--borders-style-2)",
+                    "bottom-border-style": "var(--borders-style-2)"
+                  }
+                },
+                "panelClassName": {
+                  "boxShadow": "var(--shadows-shadow-none)"
+                }
+              },
+              "wrapperCustomStyle": {
+                "root": {
+                  "max-width": "400px"
+                }
+              }
+            }
+          ],
+          "size": "none",
+          "style": {
+            "position": "static",
+            "display": "block",
+            "flex": "1 1 auto",
+            "flexGrow": 1,
+            "flexBasis": "0px"
+          },
+          "wrapperBody": false,
+          "isFixedHeight": false,
+          "isFixedWidth": false,
+          "id": "u:3f6e29780f87"
+        },
+        {
+          "type": "container",
+          "body": [],
+          "size": "none",
+          "style": {
+            "position": "static",
+            "display": "block",
+            "flex": "1 1 auto",
+            "flexGrow": 1,
+            "flexBasis": "0px"
+          },
+          "wrapperBody": false,
+          "isFixedHeight": false,
+          "isFixedWidth": false,
+          "id": "u:df39f3d22d6e"
+        }
+      ],
+      "style": {
+        "position": "relative",
+        "rowGap": "10px",
+        "columnGap": "10px",
+        "flexWrap": "nowrap",
+        "inset": "auto"
+      },
+      "id": "u:15840ef678c3",
+      "isFixedHeight": false,
+      "isFixedWidth": false
+    },
+    {
+      "type": "flex",
+      "items": [
+        {
+          "type": "container",
+          "body": [],
+          "size": "none",
+          "style": {
+            "position": "static",
+            "display": "block",
+            "flex": "1 1 auto",
+            "flexGrow": 1,
+            "flexBasis": 0
+          },
+          "wrapperBody": false,
+          "isFixedHeight": false,
+          "isFixedWidth": false,
+          "id": "u:66b5410c13d0"
+        },
+        {
+          "type": "container",
+          "body": [],
+          "size": "none",
+          "style": {
+            "position": "static",
+            "display": "block",
+            "flex": "1 1 auto",
+            "flexGrow": 1,
+            "flexBasis": 0
+          },
+          "wrapperBody": false,
+          "isFixedHeight": false,
+          "isFixedWidth": false,
+          "id": "u:67e950967b57"
+        },
+        {
+          "type": "container",
+          "body": [],
+          "size": "none",
+          "style": {
+            "position": "static",
+            "display": "block",
+            "flex": "1 1 auto",
+            "flexGrow": 1,
+            "flexBasis": 0
+          },
+          "wrapperBody": false,
+          "isFixedHeight": false,
+          "isFixedWidth": false,
+          "id": "u:704e448a6275"
+        }
+      ],
+      "style": {
+        "position": "relative",
+        "rowGap": "10px",
+        "columnGap": "10px",
+        "flexWrap": "nowrap",
+        "inset": "auto"
+      },
+      "id": "u:7fab705e092c",
+      "isFixedHeight": false,
+      "isFixedWidth": false
+    }
+  ],
+  "remark": null,
+  "toolbar": [],
+  "data": {},
+  "id": "u:31ca408f2668",
+  "asideResizor": false,
+  "pullRefresh": {
+    "disabled": true
+  }
+}

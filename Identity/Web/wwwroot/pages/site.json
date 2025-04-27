@@ -1,0 +1,50 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "pages": [
+      {
+        "label": "Home",
+        "url": "/",
+        "redirect": "/sys"
+      },
+      {
+        "label": "登录",
+        "url": "/login",
+        "icon": "fa fa-cube",
+        "schemaApi": "get:./pages/sys/login.json"
+      },
+      {
+        "label": "",
+        "children": [
+          {
+            "label": "系统管理",
+            "url": "/sys",
+            "icon": "fa fa-cube",
+            "schemaApi": "get:./pages/sys/index.json",
+            "children": [
+              {
+                "label": "用户管理",
+                "url": "/sys/users",
+                "icon": "fa fa-cube",
+                "schemaApi": "get:./pages/sys/users/index.json"
+              },
+              {
+                "label": "角色管理",
+                "url": "/sys/roles",
+                "icon": "fa fa-cube",
+                "schemaApi": "get:./pages/sys/roles/index.json"
+              },
+              {
+                "label": "权限管理",
+                "url": "/sys/permissions",
+                "icon": "fa fa-cube",
+                "schemaApi": "get:./pages/sys/permissions/index.json"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

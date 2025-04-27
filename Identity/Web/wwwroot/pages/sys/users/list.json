@@ -1,0 +1,345 @@
+{
+  "type": "page",
+  "title": "用户列表",
+  "body": [
+    {
+      "id": "u:fe8a5d527bb1",
+      "type": "crud2",
+      "mode": "table2",
+      "dsType": "api",
+      "syncLocation": false,
+      "primaryField": "id",
+      "loadType": "pagination",
+      "api": {
+        "url": "/api/Users",
+        "method": "get"
+      },
+      "headerToolbar": [
+        {
+          "type": "flex",
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "style": {
+            "position": "static"
+          },
+          "items": [
+            {
+              "type": "container",
+              "align": "left",
+              "behavior": [
+                "Insert",
+                "BulkEdit",
+                "BulkDelete"
+              ],
+              "body": [
+                {
+                  "type": "button",
+                  "label": "新增",
+                  "level": "primary",
+                  "className": "m-r-xs",
+                  "behavior": "Insert",
+                  "id": "u:e4d07ffa24f1",
+                  "actionType": "link",
+                  "link": "${SELF_HOST}/sys/users/new"
+                },
+                {
+                  "type": "button",
+                  "label": "刷新",
+                  "behavior": "custom",
+                  "className": "m-r-xs",
+                  "onEvent": {
+                    "click": {
+                      "actions": [
+                        {
+                          "componentId": "u:fe8a5d527bb1",
+                          "ignoreError": false,
+                          "actionType": "reload"
+                        }
+                      ]
+                    }
+                  },
+                  "id": "u:29fb73075394",
+                  "disabledOnAction": false
+                }
+              ],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start",
+                "flexBasis": "auto"
+              },
+              "id": "u:d4b892bd910f"
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "behavior": [
+                "FuzzyQuery"
+              ],
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:5b0a5ed2cef6"
+            }
+          ],
+          "id": "u:8932d788c8d1"
+        }
+      ],
+      "footerToolbar": [
+        {
+          "type": "flex",
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "style": {
+            "position": "static"
+          },
+          "items": [
+            {
+              "type": "container",
+              "align": "left",
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start"
+              },
+              "id": "u:aa9635a9a342"
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "body": [
+                {
+                  "type": "pagination",
+                  "behavior": "Pagination",
+                  "layout": [
+                    "total",
+                    "perPage",
+                    "pager"
+                  ],
+                  "perPage": 15,
+                  "perPageAvailable": [
+                    10,
+                    15,
+                    50,
+                    100
+                  ],
+                  "align": "right",
+                  "id": "u:e65c8c2be71b"
+                }
+              ],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:cb79cc143b06"
+            }
+          ],
+          "id": "u:0000054676c2"
+        }
+      ],
+      "columns": [
+        {
+          "type": "tpl",
+          "title": "名称",
+          "name": "name",
+          "id": "u:12ce6510ab26"
+        },
+        {
+          "type": "tpl",
+          "title": "昵称",
+          "name": "nickname",
+          "id": "u:843f243ce411"
+        },
+        {
+          "type": "tpl",
+          "title": "电话",
+          "name": "phoneNumber",
+          "id": "u:4c33c9df3953"
+        },
+        {
+          "type": "tpl",
+          "title": "邮箱",
+          "name": "email",
+          "id": "u:2d00bf2b64cf",
+          "placeholder": "-"
+        },
+        {
+          "type": "mapping",
+          "title": "状态",
+          "name": "isActive",
+          "id": "u:6d79d90b7947",
+          "map": {
+            "0": "<span class='label label-danger'>未激活</span>",
+            "1": "<span class='label label-success'>已激活</span>"
+          }
+        },
+        {
+          "type": "tpl",
+          "title": "id",
+          "name": "id",
+          "id": "u:55eec1d8a9ce",
+          "placeholder": "-",
+          "visible": false
+        },
+        {
+          "type": "operation",
+          "title": "操作",
+          "buttons": [
+            {
+              "type": "button",
+              "label": "查看",
+              "level": "link",
+              "behavior": "View",
+              "id": "u:3895dcc8d27a",
+              "actionType": "link",
+              "link": "${SELF_HOST}/sys/users/$id"
+            },
+            {
+              "type": "button",
+              "label": "编辑",
+              "level": "link",
+              "behavior": "Edit",
+              "id": "u:98a5a769b21f",
+              "actionType": "link",
+              "link": "${SELF_HOST}/sys/users/$id/edit"
+            },
+            {
+              "type": "button",
+              "label": "删除",
+              "behavior": "Delete",
+              "className": "m-r-xs text-danger",
+              "level": "link",
+              "confirmText": "确认要删除数据",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "ajax",
+                      "data": {
+                        "&": "$$"
+                      },
+                      "api": {
+                        "url": "/api/Users/$id",
+                        "method": "delete",
+                        "requestAdaptor": "",
+                        "adaptor": "",
+                        "messages": {}
+                      }
+                    },
+                    {
+                      "actionType": "toast",
+                      "ignoreError": false,
+                      "args": {
+                        "msgType": "success",
+                        "position": "top-right",
+                        "closeButton": true,
+                        "showIcon": true,
+                        "msg": "删除成功！",
+                        "className": "theme-toast-action-scope"
+                      }
+                    },
+                    {
+                      "actionType": "search",
+                      "groupType": "component",
+                      "componentId": "u:fe8a5d527bb1"
+                    }
+                  ]
+                }
+              },
+              "id": "u:df5811284814",
+              "disabledOnAction": false
+            },
+            {
+              "type": "dropdown-button",
+              "label": "更多",
+              "level": "link",
+              "actionType": "link",
+              "trigger": "hover",
+              "buttons": [
+                {
+                  "type": "button",
+                  "label": "角色分配",
+                  "id": "u:1108e1ee1849"
+                },
+                {
+                  "type": "button",
+                  "label": "密码重置",
+                  "id": "u:a9bf8fa6bbaf"
+                },
+                {
+                  "type": "button",
+                  "label": "激活",
+                  "id": "u:48bdcbab6f57",
+                  "disabledOnAction": false,
+                  "visibleOn": "${!isActive}"
+                },
+                {
+                  "type": "button",
+                  "label": "取消激活",
+                  "id": "u:0408a70f068e",
+                  "disabledOnAction": false,
+                  "visibleOn": "${isActive}"
+                }
+              ],
+              "id": "u:c639a25e8fbc"
+            }
+          ],
+          "id": "u:25dbf824c49f"
+        }
+      ],
+      "editorSetting": {
+        "mock": {
+          "enable": true,
+          "maxDisplayRows": 5
+        }
+      },
+      "showHeader": true,
+      "quickSaveItemApi": {
+        "url": "/api/Users/$id",
+        "method": "put",
+        "requestAdaptor": "",
+        "adaptor": "",
+        "messages": {}
+      }
+    }
+  ],
+  "id": "u:06f8316bfa76",
+  "asideResizor": false,
+  "pullRefresh": {
+    "disabled": true
+  }
+}

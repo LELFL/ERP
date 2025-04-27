@@ -1,0 +1,11 @@
+{
+    "type": "page",
+    "title": "系统管理",
+    "remark": null,
+    "toolbar": [
+    ],
+    "asideResizor": false,
+    "pullRefresh": {
+      "disabled": true
+    }
+  }

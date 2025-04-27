@@ -1,0 +1,288 @@
+{
+  "type": "page",
+  "title": "角色列表",
+  "body": [
+    {
+      "id": "u:fe8a5d527bb1",
+      "type": "crud2",
+      "mode": "table2",
+      "dsType": "api",
+      "syncLocation": true,
+      "primaryField": "id",
+      "loadType": "pagination",
+      "api": {
+        "url": "/api/Roles",
+        "method": "get"
+      },
+      "quickSaveItemApi": {
+        "url": "/api/Roles/$id",
+        "method": "put",
+        "requestAdaptor": "",
+        "adaptor": "",
+        "messages": {}
+      },
+      "headerToolbar": [
+        {
+          "type": "flex",
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "style": {
+            "position": "static"
+          },
+          "items": [
+            {
+              "type": "container",
+              "align": "left",
+              "behavior": [
+                "Insert",
+                "BulkEdit",
+                "BulkDelete"
+              ],
+              "body": [
+                {
+                  "type": "button",
+                  "label": "新增",
+                  "level": "primary",
+                  "className": "m-r-xs",
+                  "behavior": "Insert",
+                  "actionType": "link",
+                  "link": "${SELF_HOST}/sys/roles/new",
+                  "id": "u:e4d07ffa24f1"
+                },
+                {
+                  "type": "button",
+                  "label": "刷新",
+                  "behavior": "custom",
+                  "className": "m-r-xs",
+                  "onEvent": {
+                    "click": {
+                      "actions": [
+                        {
+                          "componentId": "u:fe8a5d527bb1",
+                          "ignoreError": false,
+                          "actionType": "reload"
+                        }
+                      ]
+                    }
+                  },
+                  "id": "u:29fb73075394",
+                  "disabledOnAction": false
+                }
+              ],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start"
+              },
+              "id": "u:d4b892bd910f"
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "behavior": [
+                "FuzzyQuery"
+              ],
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:5b0a5ed2cef6"
+            }
+          ],
+          "id": "u:8932d788c8d1"
+        }
+      ],
+      "footerToolbar": [
+        {
+          "type": "flex",
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "style": {
+            "position": "static"
+          },
+          "items": [
+            {
+              "type": "container",
+              "align": "left",
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start"
+              },
+              "id": "u:aa9635a9a342"
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "body": [
+                {
+                  "type": "pagination",
+                  "behavior": "Pagination",
+                  "layout": [
+                    "total",
+                    "perPage",
+                    "pager"
+                  ],
+                  "perPage": 10,
+                  "perPageAvailable": [
+                    10,
+                    20,
+                    50,
+                    100
+                  ],
+                  "align": "right",
+                  "id": "u:e65c8c2be71b"
+                }
+              ],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:cb79cc143b06"
+            }
+          ],
+          "id": "u:0000054676c2"
+        }
+      ],
+      "columns": [
+        {
+          "type": "tpl",
+          "title": "名称",
+          "name": "name",
+          "id": "u:37ed255a9456"
+        },
+        {
+          "type": "tpl",
+          "title": "说明",
+          "name": "description",
+          "id": "u:0abf7c13043a"
+        },
+        {
+          "type": "tpl",
+          "title": "id",
+          "name": "id",
+          "id": "u:271332036df5",
+          "placeholder": "-",
+          "visible": false
+        },
+        {
+          "type": "operation",
+          "title": "操作",
+          "buttons": [
+            {
+              "type": "button",
+              "label": "查看",
+              "level": "link",
+              "behavior": "View",
+              "actionType": "link",
+              "link": "${SELF_HOST}/sys/roles/$id",
+              "id": "u:3895dcc8d27a"
+            },
+            {
+              "type": "button",
+              "label": "编辑",
+              "level": "link",
+              "behavior": "Edit",
+              "actionType": "link",
+              "link": "${SELF_HOST}/sys/roles/$id/edit",
+    
+              "id": "u:98a5a769b21f"
+            },
+            {
+              "type": "button",
+              "label": "删除",
+              "behavior": "Delete",
+              "className": "m-r-xs text-danger",
+              "level": "link",
+              "confirmText": "确认要删除数据",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "ajax",
+                      "api": {
+                        "url": "/api/Roles/$id",
+                        "method": "delete",
+                        "requestAdaptor": "",
+                        "adaptor": "",
+                        "messages": {}
+                      },
+                      "data": {
+                        "&": "$$"
+                      }
+                    },
+                    {
+                      "ignoreError": false,
+                      "actionType": "toast",
+                      "args": {
+                        "msgType": "success",
+                        "position": "top-right",
+                        "closeButton": true,
+                        "showIcon": true,
+                        "msg": "删除成功！",
+                        "className": "theme-toast-action-scope"
+                      }
+                    },
+                    {
+                      "actionType": "search",
+                      "groupType": "component",
+                      "componentId": "u:fe8a5d527bb1"
+                    }
+                  ]
+                }
+              },
+              "id": "u:df5811284814"
+            }
+          ],
+          "id": "u:25dbf824c49f"
+        }
+      ],
+      "editorSetting": {
+        "mock": {
+          "enable": true,
+          "maxDisplayRows": 5
+        }
+      },
+      "showHeader": true
+    }
+  ],
+  "id": "u:06f8316bfa76",
+  "asideResizor": false,
+  "pullRefresh": {
+    "disabled": true
+  }
+}

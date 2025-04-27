@@ -1,0 +1,86 @@
+{
+  "type": "page",
+  "title": "修改角色",
+  "body": [
+    {
+      "type": "form",
+      "id": "u:2cd377e85c27",
+      "title": "",
+      "mode": "flex",
+      "labelAlign": "top",
+      "dsType": "api",
+      "feat": "Edit",
+      "body": [
+        {
+          "name": "name",
+          "label": "名称",
+          "row": 0,
+          "type": "input-text",
+          "id": "u:0ed0d22e4223"
+        },
+        {
+          "name": "description",
+          "label": "说明",
+          "row": 1,
+          "type": "input-text",
+          "id": "u:062a1547b9d5"
+        }
+      ],
+      "api": {
+        "url": "/api/Roles/$id",
+        "method": "put",
+        "requestAdaptor": "",
+        "adaptor": "",
+        "messages": {}
+      },
+      "resetAfterSubmit": true,
+      "initApi": {
+        "url": "/api/Roles/$id",
+        "method": "get"
+      },
+      "actions": [
+        {
+          "type": "button",
+          "actionType": "submit",
+          "label": "提交",
+          "level": "primary",
+          "id": "u:efcf3f32f0da",
+          "disabledOnAction": false
+        }
+      ],
+      "onEvent": {
+        "submitSucc": {
+          "actions": [
+            {
+              "ignoreError": false,
+              "actionType": "url",
+              "args": {
+                "url": "${SELF_HOST}/sys/roles/list",
+                "blank": false
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "remark": null,
+  "toolbar": [
+    {
+      "type": "button",
+      "actionType": "link",
+      "link": "${SELF_HOST}/sys/roles/list",
+      "label": "返回列表",
+      "id": "u:8750457c6253",
+      "disabledOnAction": false
+    }
+  ],
+  "data": {
+    "id": "${params.id}"
+  },
+  "id": "u:31ca408f2668",
+  "asideResizor": false,
+  "pullRefresh": {
+    "disabled": true
+  }
+}

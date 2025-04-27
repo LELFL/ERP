@@ -1,0 +1,557 @@
+{
+    "type": "page",
+    "title": "权限列表",
+    "body": [
+      {
+        "id": "u:11a2b5a2cf60",
+        "type": "crud2",
+        "mode": "table2",
+        "dsType": "api",
+        "syncLocation": true,
+        "primaryField": "id",
+        "loadType": "",
+        "api": {
+          "url": "/api/permissions",
+          "method": "get"
+        },
+        "quickSaveItemApi": {
+          "url": "/api/permissions",
+          "method": "put",
+          "requestAdaptor": "",
+          "adaptor": "",
+          "messages": {}
+        },
+        "headerToolbar": [
+          {
+            "type": "flex",
+            "direction": "row",
+            "justify": "flex-start",
+            "alignItems": "stretch",
+            "style": {
+              "position": "static"
+            },
+            "items": [
+              {
+                "type": "container",
+                "align": "left",
+                "behavior": [
+                  "Insert",
+                  "BulkEdit",
+                  "BulkDelete"
+                ],
+                "body": [
+                  {
+                    "type": "button",
+                    "label": "新增",
+                    "level": "primary",
+                    "className": "m-r-xs",
+                    "behavior": "Insert",
+                    "onEvent": {
+                      "click": {
+                        "actions": [
+                          {
+                            "actionType": "dialog",
+                            "dialog": {
+                              "type": "dialog",
+                              "body": [
+                                {
+                                  "id": "u:5219080b69e0",
+                                  "type": "form",
+                                  "title": "新增权限",
+                                  "mode": "flex",
+                                  "labelAlign": "top",
+                                  "dsType": "api",
+                                  "feat": "Insert",
+                                  "body": [
+                                    {
+                                      "type": "tree-select",
+                                      "label": "上级权限",
+                                      "name": "parentId",
+                                      "row": 0,
+                                      "id": "u:1b9e6ace15f7",
+                                      "colSize": "1",
+                                      "multiple": false,
+                                      "nodeBehavior": [
+                                        "unfold",
+                                        "check"
+                                      ],
+                                      "themeCss": {
+                                        "actionControlClassName": {
+                                          "marginLeft": ""
+                                        }
+                                      },
+                                      "enableNodePath": false,
+                                      "hideRoot": true,
+                                      "showIcon": true,
+                                      "initiallyOpen": true,
+                                      "source": "${items}",
+                                      "clearable": true,
+                                      "labelField": "description",
+                                      "searchable": true,
+                                      "valueField": "id"
+                                    },
+                                    {
+                                      "name": "name",
+                                      "label": "名称",
+                                      "row": 1,
+                                      "type": "input-text",
+                                      "id": "u:f1c045fb93f5",
+                                      "colSize": "1/2"
+                                    },
+                                    {
+                                      "name": "description",
+                                      "label": "描述",
+                                      "row": 1,
+                                      "type": "input-text",
+                                      "id": "u:a1e29a96cfe3",
+                                      "colSize": "1/2"
+                                    }
+                                  ],
+                                  "api": {
+                                    "method": "post",
+                                    "url": "/api/Permissions",
+                                    "requestAdaptor": "",
+                                    "adaptor": "",
+                                    "messages": {}
+                                  },
+                                  "resetAfterSubmit": true,
+                                  "actions": [
+                                    {
+                                      "type": "button",
+                                      "actionType": "cancel",
+                                      "label": "取消"
+                                    },
+                                    {
+                                      "type": "button",
+                                      "actionType": "submit",
+                                      "label": "提交",
+                                      "level": "primary"
+                                    }
+                                  ],
+                                  "onEvent": {
+                                    "submitSucc": {
+                                      "actions": [
+                                        {
+                                          "actionType": "search",
+                                          "groupType": "component",
+                                          "componentId": "u:11a2b5a2cf60"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              ],
+                              "title": "新增顶级权限",
+                              "size": "md",
+                              "actions": [
+                                {
+                                  "type": "button",
+                                  "actionType": "cancel",
+                                  "label": "取消",
+                                  "id": "u:b0897dfc13ee"
+                                },
+                                {
+                                  "type": "button",
+                                  "actionType": "submit",
+                                  "label": "提交",
+                                  "level": "primary",
+                                  "id": "u:96ddce302295"
+                                }
+                              ],
+                              "actionType": "dialog",
+                              "id": "u:626498cfde9c",
+                              "showCloseButton": true,
+                              "closeOnOutside": false,
+                              "closeOnEsc": false,
+                              "showErrorMsg": true,
+                              "showLoading": true,
+                              "draggable": false
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "id": "u:12f4965daff0",
+                    "disabledOnAction": false
+                  },
+                  {
+                    "type": "button",
+                    "label": "刷新",
+                    "className": "m-r-xs",
+                    "behavior": "custom",
+                    "onEvent": {
+                      "click": {
+                        "actions": [
+                          {
+                            "componentId": "u:11a2b5a2cf60",
+                            "ignoreError": false,
+                            "actionType": "reload"
+                          }
+                        ]
+                      }
+                    },
+                    "id": "u:404ca662907e",
+                    "disabledOnAction": false
+                  }
+                ],
+                "wrapperBody": false,
+                "style": {
+                  "flexGrow": 1,
+                  "flex": "1 1 auto",
+                  "position": "static",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "flexWrap": "nowrap",
+                  "alignItems": "stretch",
+                  "justifyContent": "flex-start"
+                },
+                "id": "u:5ce801c4fab7",
+                "isFixedHeight": false
+              },
+              {
+                "type": "container",
+                "align": "right",
+                "behavior": [
+                  "FuzzyQuery"
+                ],
+                "body": [],
+                "wrapperBody": false,
+                "style": {
+                  "flexGrow": 1,
+                  "flex": "1 1 auto",
+                  "position": "static",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "flexWrap": "nowrap",
+                  "alignItems": "stretch",
+                  "justifyContent": "flex-end"
+                },
+                "id": "u:de7950216627",
+                "isFixedHeight": false
+              }
+            ],
+            "id": "u:31ebddc82868"
+          }
+        ],
+        "footerToolbar": [
+          {
+            "type": "flex",
+            "direction": "row",
+            "justify": "flex-start",
+            "alignItems": "stretch",
+            "style": {
+              "position": "static"
+            },
+            "items": [
+              {
+                "type": "container",
+                "align": "left",
+                "body": [],
+                "wrapperBody": false,
+                "style": {
+                  "flexGrow": 1,
+                  "flex": "1 1 auto",
+                  "position": "static",
+                  "display": "flex",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexWrap": "nowrap",
+                  "alignItems": "stretch",
+                  "justifyContent": "flex-start"
+                },
+                "id": "u:34f16c3f406d"
+              },
+              {
+                "type": "container",
+                "align": "right",
+                "body": [],
+                "wrapperBody": false,
+                "style": {
+                  "flexGrow": 1,
+                  "flex": "1 1 auto",
+                  "position": "static",
+                  "display": "flex",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexWrap": "nowrap",
+                  "alignItems": "stretch",
+                  "justifyContent": "flex-end"
+                },
+                "id": "u:0391e4b4e78d"
+              }
+            ],
+            "id": "u:203d7b97663e"
+          }
+        ],
+        "columns": [
+          {
+            "type": "tpl",
+            "title": "名称",
+            "name": "name",
+            "id": "u:3ba2cd6270bb"
+          },
+          {
+            "type": "tpl",
+            "title": "描述",
+            "name": "description",
+            "id": "u:42746129bb75",
+            "placeholder": "-"
+          },
+          {
+            "type": "tpl",
+            "tpl": "请编辑内容",
+            "inline": true,
+            "wrapperComponent": "",
+            "title": "父级权限",
+            "id": "u:a1663e933def",
+            "placeholder": "-",
+            "name": "parentName",
+            "visible": false
+          },
+          {
+            "type": "tpl",
+            "title": "id",
+            "name": "id",
+            "id": "u:9a514044d632",
+            "placeholder": "-",
+            "visible": false
+          },
+          {
+            "type": "tpl",
+            "tpl": "",
+            "inline": true,
+            "title": "parentId",
+            "id": "u:975aaea19f97",
+            "wrapperComponent": "",
+            "placeholder": "-",
+            "name": "parentId",
+            "hidden": false,
+            "visible": false
+          },
+          {
+            "type": "operation",
+            "title": "操作",
+            "buttons": [
+              {
+                "type": "button",
+                "label": "编辑",
+                "level": "link",
+                "behavior": "Edit",
+                "onEvent": {
+                  "click": {
+                    "actions": [
+                      {
+                        "actionType": "drawer",
+                        "drawer": {
+                          "type": "drawer",
+                          "body": [
+                            {
+                              "id": "u:4ad72882e970",
+                              "type": "form",
+                              "title": "编辑权限",
+                              "mode": "flex",
+                              "labelAlign": "top",
+                              "dsType": "api",
+                              "feat": "Edit",
+                              "body": [
+                                {
+                                  "type": "tree-select",
+                                  "label": "上级权限",
+                                  "name": "parentId",
+                                  "row": 0,
+                                  "id": "u:1b9e6ace15f7",
+                                  "multiple": false,
+                                  "nodeBehavior": [
+                                    "unfold",
+                                    "check"
+                                  ],
+                                  "themeCss": {
+                                    "actionControlClassName": {
+                                      "marginLeft": ""
+                                    }
+                                  },
+                                  "enableNodePath": false,
+                                  "hideRoot": true,
+                                  "showIcon": true,
+                                  "initiallyOpen": true,
+                                  "source": "${items}",
+                                  "clearable": true,
+                                  "labelField": "description",
+                                  "searchable": true,
+                                  "valueField": "id",
+                                  "colSize": "1"
+                                },
+                                {
+                                  "name": "name",
+                                  "label": "名称",
+                                  "row": 1,
+                                  "type": "input-text",
+                                  "id": "u:cfcca54decda",
+                                  "colSize": "1/2"
+                                },
+                                {
+                                  "name": "description",
+                                  "label": "描述",
+                                  "row": 1,
+                                  "type": "input-text",
+                                  "id": "u:d051930f52d0",
+                                  "colSize": "1/2"
+                                }
+                              ],
+                              "api": {
+                                "url": "/api/permissions/$id",
+                                "method": "put",
+                                "requestAdaptor": "",
+                                "adaptor": "",
+                                "messages": {}
+                              },
+                              "resetAfterSubmit": true,
+                              "initApi": {
+                                "url": "/api/permissions/$id",
+                                "method": "get",
+                                "requestAdaptor": "",
+                                "adaptor": "",
+                                "messages": {}
+                              },
+                              "actions": [
+                                {
+                                  "type": "button",
+                                  "actionType": "cancel",
+                                  "label": "取消"
+                                },
+                                {
+                                  "type": "button",
+                                  "actionType": "submit",
+                                  "label": "提交",
+                                  "level": "primary"
+                                }
+                              ],
+                              "onEvent": {
+                                "submitSucc": {
+                                  "actions": [
+                                    {
+                                      "actionType": "search",
+                                      "groupType": "component",
+                                      "componentId": "u:11a2b5a2cf60"
+                                    },
+                                    {
+                                      "actionType": "toast",
+                                      "ignoreError": false,
+                                      "args": {
+                                        "msgType": "success",
+                                        "position": "top-right",
+                                        "closeButton": true,
+                                        "showIcon": true,
+                                        "msg": "修改成功！",
+                                        "className": "theme-toast-action-scope"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          ],
+                          "title": "编辑权限",
+                          "size": "xl",
+                          "actions": [
+                            {
+                              "type": "button",
+                              "actionType": "cancel",
+                              "label": "取消",
+                              "id": "u:aecbf13b0e23"
+                            },
+                            {
+                              "type": "button",
+                              "actionType": "submit",
+                              "label": "提交",
+                              "level": "primary",
+                              "id": "u:94dc1a11bc3a"
+                            }
+                          ],
+                          "actionType": "drawer",
+                          "id": "u:61ecc9f1d6f4",
+                          "showCloseButton": true,
+                          "closeOnOutside": false,
+                          "closeOnEsc": true,
+                          "showErrorMsg": true,
+                          "showLoading": true,
+                          "draggable": false,
+                          "resizable": true
+                        }
+                      }
+                    ]
+                  }
+                },
+                "id": "u:11439b7ea8d6",
+                "disabledOnAction": false
+              },
+              {
+                "type": "button",
+                "label": "删除",
+                "behavior": "Delete",
+                "className": "m-r-xs text-danger",
+                "level": "link",
+                "confirmText": "确认要删除权限",
+                "onEvent": {
+                  "click": {
+                    "actions": [
+                      {
+                        "actionType": "ajax",
+                        "api": {
+                          "url": "/api/permissions/$id",
+                          "method": "delete",
+                          "requestAdaptor": "",
+                          "adaptor": "",
+                          "messages": {}
+                        },
+                        "data": {
+                          "&": "$$"
+                        }
+                      },
+                      {
+                        "actionType": "search",
+                        "groupType": "component",
+                        "componentId": "u:11a2b5a2cf60"
+                      },
+                      {
+                        "actionType": "toast",
+                        "ignoreError": false,
+                        "args": {
+                          "msgType": "success",
+                          "position": "top-right",
+                          "closeButton": true,
+                          "showIcon": true,
+                          "msg": "删除成功！",
+                          "className": "theme-toast-action-scope"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "id": "u:b0af6db1bb22"
+              }
+            ],
+            "id": "u:25cab3502a53"
+          }
+        ],
+        "editorSetting": {
+          "mock": {
+            "enable": true,
+            "maxDisplayRows": 5
+          }
+        },
+        "showHeader": true,
+        "childrenColumnName": "children"
+      }
+    ],
+    "id": "u:06f8316bfa76",
+    "asideResizor": false,
+    "pullRefresh": {
+      "disabled": true
+    },
+    "definitions": {
+      "modal-ref-1": {
+        "$ref": "modal-ref-1"
+      }
+    }
+  }
