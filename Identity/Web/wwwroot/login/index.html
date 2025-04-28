@@ -154,7 +154,7 @@
                         method: "post",
                         requestAdaptor: "",
                         adaptor:
-                          "console.log(payload)\r\nwindow.userService.setToken(payload.data)",
+                          "console.log(payload)\r\nwindow.userService.tokens.set(payload.data)",
                         messages: {},
                         data: {
                           grant_type: "password",

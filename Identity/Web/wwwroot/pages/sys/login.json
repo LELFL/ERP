@@ -115,7 +115,7 @@
                 "url": "/api/connect/token",
                 "method": "post",
                 "requestAdaptor": "",
-                "adaptor": "console.log(payload)\r\nwindow.userService.setToken(payload.data)\r\nwindow.location.href = window.clientUrl;",
+                "adaptor": "console.log(payload)\r\nwindow.userService.tokens.set(payload.data)\r\nwindow.location.href = window.clientUrl;",
                 "messages": {},
                 "data": {
                   "grant_type": "password",
