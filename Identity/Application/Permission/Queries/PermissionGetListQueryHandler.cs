@@ -1,8 +1,8 @@
-using System.Linq.Dynamic.Core;
 using Dtos;
 using ELF.Common.Models;
-using ELF.Interfaces.Permissions;
 using Mapster;
+using Repositories;
+using System.Linq.Dynamic.Core;
 
 namespace Queries;
 

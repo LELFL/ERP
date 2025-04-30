@@ -7,7 +7,7 @@ namespace Commands;
 
 public class RoleCreateCommandHandler : IRequestHandler<RoleCreateCommand, RoleDto>
 {
-    private readonly IRepository<Role,long> _repository;
+    private readonly IRepository<Role, long> _repository;
 
     public RoleCreateCommandHandler(IRepository<Role, long> repository)
     {

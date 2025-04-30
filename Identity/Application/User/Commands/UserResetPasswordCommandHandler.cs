@@ -14,7 +14,7 @@ public class UserResetPasswordCommandHandler : IRequestHandler<UserResetPassword
     private readonly IRepository<User, long> _repository;
     private readonly IPasswordEncryptor _passwordEncryptor;
 
-    public UserResetPasswordCommandHandler(IRepository<User, long> repository,IPasswordEncryptor passwordEncryptor)
+    public UserResetPasswordCommandHandler(IRepository<User, long> repository, IPasswordEncryptor passwordEncryptor)
     {
         _repository = repository;
         _passwordEncryptor = passwordEncryptor;

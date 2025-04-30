@@ -1,7 +1,6 @@
 using Constants;
 using Dtos;
 using ELF.Common.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace ELF.Web.Endpoints;

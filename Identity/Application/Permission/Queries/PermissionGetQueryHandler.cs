@@ -17,6 +17,6 @@ public class PermissionGetQueryHandler : IRequestHandler<PermissionQuery, Permis
     public async Task<PermissionDto> Handle(PermissionQuery request, CancellationToken cancellationToken)
     {
         var entity = await _repository.GetAsync(request.Id);
-        return entity.Adapt<PermissionDto>(); 
+        return entity.Adapt<PermissionDto>();
     }
 }

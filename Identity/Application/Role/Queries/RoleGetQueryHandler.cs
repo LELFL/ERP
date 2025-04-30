@@ -17,6 +17,6 @@ public class RoleGetQueryHandler : IRequestHandler<RoleQuery, RoleDto>
     public async Task<RoleDto> Handle(RoleQuery request, CancellationToken cancellationToken)
     {
         var entity = await _repository.GetAsync(request.Id);
-        return entity.Adapt<RoleDto>(); 
+        return entity.Adapt<RoleDto>();
     }
 }

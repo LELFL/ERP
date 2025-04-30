@@ -14,21 +14,18 @@ var app = builder.Build();
 
 app.MapDefaultEndpoints();
 
+await app.Services.InitialiseDatabaseAsync();
+app.MapOpenApi();
+
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    await app.Services.InitialiseDatabaseAsync();
-    app.MapOpenApi();
-}
-else
+if (!app.Environment.IsDevelopment())
 {
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseFileServer();
-//app.UseHttpsRedirection();
-//app.UseStaticFiles();
+app.UseHttpsRedirection();
 
 app.UseDefaultCors();
 

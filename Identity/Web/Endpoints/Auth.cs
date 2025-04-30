@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using Entities;
+﻿using Entities;
 using Interfaces;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
@@ -7,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using Repositories;
+using System.Security.Claims;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace ELF.Endpoints;
@@ -68,7 +68,7 @@ public class Auth
                     ;
             identity.SetScopes(request.GetScopes());
             identity.SetDestinations(GetDestinations);
-                    ;
+            ;
         }
 
         else if (request.IsRefreshTokenGrantType())

@@ -1,0 +1,59 @@
+{
+  "type": "page",
+  "title": "查看角色",
+  "data": {
+    "id": "${params.id}"
+  },
+  "remark": null,
+  "toolbar": [
+    {
+      "type": "button",
+      "actionType": "link",
+      "link": "${SELF_HOST}/sys/roles/list",
+      "label": "返回列表"
+    }
+  ],
+  "body": [
+    {
+      "id": "u:821652cbb7dc",
+      "type": "form",
+      "title": "",
+      "mode": "flex",
+      "labelAlign": "top",
+      "dsType": "api",
+      "feat": "View",
+      "initApi": {
+        "url": "/api/Roles/$id",
+        "method": "get"
+      },
+      "body": [
+        {
+          "name": "name",
+          "label": "名称",
+          "row": 0,
+          "type": "input-text"
+        },
+        {
+          "name": "description",
+          "label": "说明",
+          "row": 1,
+          "type": "input-text"
+        }
+      ],
+      "static": true,
+      "actions": [
+      ],
+      "onEvent": {
+        "submitSucc": {
+          "actions": [
+            {
+              "actionType": "search",
+              "groupType": "component",
+              "componentId": "u:fe8a5d527bb1"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

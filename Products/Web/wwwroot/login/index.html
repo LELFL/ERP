@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>amis demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="../common.js"></script>
+    <link rel="stylesheet" href="../sdk/sdk.css" />
+    <link rel="stylesheet" href="../sdk/helper.css" />
+    <link rel="stylesheet" href="../sdk/iconfont.css" />
+    <!-- 这是默认主题所需的，如果是其他主题则不需要 -->
+    <!-- 从 1.1.0 开始 sdk.css 将不支持 IE 11，如果要支持 IE11 请引用这个 css，并把前面那个删了 -->
+    <!-- <link rel="stylesheet" href="sdk-ie11.css" /> -->
+    <!-- 不过 amis 开发团队几乎没测试过 IE 11 下的效果，所以可能有细节功能用不了，如果发现请报 issue -->
+    <style>
+      html,
+      body,
+      .app-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="app-wrapper"></div>
+    <script src="../sdk/sdk.js"></script>
+    <script type="text/javascript">
+      (function () {
+        let amis = amisRequire("amis/embed");
+        // 通过替换下面这个配置来生成不同页面
+        let amisJSON = {
+          type: "page",
+          title: "",
+          body: [
+            {
+              type: "flex",
+              items: [
+                {
+                  type: "container",
+                  body: [],
+                  size: "none",
+                  style: {
+                    position: "static",
+                    display: "block",
+                    flex: "1 1 auto",
+                    flexGrow: 1,
+                    flexBasis: 0,
+                  },
+                  wrapperBody: false,
+                  isFixedHeight: false,
+                  isFixedWidth: false,
+                  id: "u:da9f5139214b",
+                },
+                {
+                  type: "container",
+                  body: [],
+                  size: "none",
+                  style: {
+                    position: "static",
+                    display: "block",
+                    flex: "1 1 auto",
+                    flexGrow: 1,
+                    flexBasis: 0,
+                  },
+                  wrapperBody: false,
+                  isFixedHeight: false,
+                  isFixedWidth: false,
+                  id: "u:709784de74c7",
+                },
+                {
+                  type: "container",
+                  body: [],
+                  size: "none",
+                  style: {
+                    position: "static",
+                    display: "block",
+                    flex: "1 1 auto",
+                    flexGrow: 1,
+                    flexBasis: 0,
+                  },
+                  wrapperBody: false,
+                  isFixedHeight: false,
+                  isFixedWidth: false,
+                  id: "u:d65b525b2271",
+                },
+              ],
+              style: {
+                position: "relative",
+                rowGap: "10px",
+                columnGap: "10px",
+              },
+              id: "u:110c896888e8",
+            },
+            {
+              type: "flex",
+              items: [
+                {
+                  type: "container",
+                  body: [],
+                  size: "none",
+                  style: {
+                    position: "static",
+                    display: "block",
+                    flex: "1 1 auto",
+                    flexGrow: 1,
+                    flexBasis: "0px",
+                    overflowY: "visible",
+                  },
+                  wrapperBody: false,
+                  isFixedHeight: false,
+                  isFixedWidth: false,
+                  id: "u:9386be00e8dc",
+                },
+                {
+                  type: "container",
+                  body: [
+                    {
+                      id: "u:b32bc4f3150d",
+                      type: "form",
+                      title: "登录",
+                      body: [
+                        {
+                          type: "input-text",
+                          id: "u:1978e56e31de",
+                          name: "username",
+                          label: "用户名",
+                          row: 0,
+                        },
+                        {
+                          type: "input-password",
+                          id: "u:d60dfd6da3b2",
+                          name: "password",
+                          label: "密码",
+                          row: 1,
+                          showCounter: false,
+                          validations: {},
+                          validationErrors: {},
+                        },
+                      ],
+                      mode: "flex",
+                      labelAlign: "top",
+                      dsType: "api",
+                      feat: "Insert",
+                      api: {
+                        url: "/api/connect/token",
+                        method: "post",
+                        requestAdaptor: "",
+                        adaptor:
+                          "console.log(payload)\r\nwindow.userService.tokens.set(payload.data)",
+                        messages: {},
+                        data: {
+                          grant_type: "password",
+                          client_id: "employee_client",
+                          client_secret: "ds1fa2d1g23sg456dsda4g6s63.-45sj",
+                          scope: "offline_access",
+                          username: "$username",
+                          password: "$password",
+                        },
+                        dataType: "form",
+                      },
+                      actions: [
+                        {
+                          type: "button",
+                          label: "登录",
+                          onEvent: {
+                            click: {
+                              actions: [
+                                {
+                                  actionType: "submit",
+                                  componentId: "u:b32bc4f3150d",
+                                },
+                                {
+                                  ignoreError: false,
+                                  outputVar: "responseResult",
+                                  actionType: "ajax",
+                                  options: {},
+                                  api: {
+                                    url: "/api/users/currentuser",
+                                    method: "get",
+                                    requestAdaptor: "",
+                                    adaptor: "window.userService.login(payload.data)\r\nwindow.location.href = window.clientUrl;",
+                                    messages: {},
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                          level: "primary",
+                          id: "u:cf71a5efca45",
+                          disabledOnAction: false,
+                          block: true,
+                        },
+                      ],
+                      resetAfterSubmit: true,
+                      themeCss: {
+                        headerTitleControlClassName: {
+                          font: {
+                            "text-align": "center",
+                            "vertical-align": "middle",
+                            fontWeight: "var(--fonts-weight-3)",
+                            lineHeight: "var(--fonts-lineHeight-3)",
+                            fontSize: "var(--fonts-size-6)",
+                          },
+                        },
+                        headerControlClassName: {
+                          border: {
+                            "top-border-style": "var(--borders-style-2)",
+                            "left-border-style": "var(--borders-style-2)",
+                            "right-border-style": "var(--borders-style-2)",
+                            "bottom-border-style": "var(--borders-style-2)",
+                          },
+                        },
+                        panelClassName: {
+                          boxShadow: "var(--shadows-shadow-none)",
+                        },
+                      },
+                      wrapperCustomStyle: {
+                        root: {
+                          "max-width": "400px",
+                        },
+                      },
+                    },
+                  ],
+                  size: "none",
+                  style: {
+                    position: "static",
+                    display: "block",
+                    flex: "1 1 auto",
+                    flexGrow: 1,
+                    flexBasis: "0px",
+                  },
+                  wrapperBody: false,
+                  isFixedHeight: false,
+                  isFixedWidth: false,
+                  id: "u:3f6e29780f87",
+                },
+                {
+                  type: "container",
+                  body: [],
+                  size: "none",
+                  style: {
+                    position: "static",
+                    display: "block",
+                    flex: "1 1 auto",
+                    flexGrow: 1,
+                    flexBasis: "0px",
+                  },
+                  wrapperBody: false,
+                  isFixedHeight: false,
+                  isFixedWidth: false,
+                  id: "u:df39f3d22d6e",
+                },
+              ],
+              style: {
+                position: "relative",
+                rowGap: "10px",
+                columnGap: "10px",
+                flexWrap: "nowrap",
+                inset: "auto",
+              },
+              id: "u:15840ef678c3",
+              isFixedHeight: false,
+              isFixedWidth: false,
+            },
+            {
+              type: "flex",
+              items: [
+                {
+                  type: "container",
+                  body: [],
+                  size: "none",
+                  style: {
+                    position: "static",
+                    display: "block",
+                    flex: "1 1 auto",
+                    flexGrow: 1,
+                    flexBasis: 0,
+                  },
+                  wrapperBody: false,
+                  isFixedHeight: false,
+                  isFixedWidth: false,
+                  id: "u:66b5410c13d0",
+                },
+                {
+                  type: "container",
+                  body: [],
+                  size: "none",
+                  style: {
+                    position: "static",
+                    display: "block",
+                    flex: "1 1 auto",
+                    flexGrow: 1,
+                    flexBasis: 0,
+                  },
+                  wrapperBody: false,
+                  isFixedHeight: false,
+                  isFixedWidth: false,
+                  id: "u:67e950967b57",
+                },
+                {
+                  type: "container",
+                  body: [],
+                  size: "none",
+                  style: {
+                    position: "static",
+                    display: "block",
+                    flex: "1 1 auto",
+                    flexGrow: 1,
+                    flexBasis: 0,
+                  },
+                  wrapperBody: false,
+                  isFixedHeight: false,
+                  isFixedWidth: false,
+                  id: "u:704e448a6275",
+                },
+              ],
+              style: {
+                position: "relative",
+                rowGap: "10px",
+                columnGap: "10px",
+                flexWrap: "nowrap",
+                inset: "auto",
+              },
+              id: "u:7fab705e092c",
+              isFixedHeight: false,
+              isFixedWidth: false,
+            },
+          ],
+          remark: null,
+          toolbar: [],
+          data: {},
+          id: "u:31ca408f2668",
+          asideResizor: false,
+          pullRefresh: {
+            disabled: true,
+          },
+        };
+        let amisScoped = amis.embed("#root", amisJSON, null, {
+          requestAdaptor: window.api.requestAdaptor,
+          responseAdaptor: window.api.responseAdaptor,
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -10,21 +10,21 @@ public partial class PermissionUpdateCommand : BaseDto<long>, IRequest<Permissio
     /// <summary>
     /// 名称
     /// </summary>
-    public string Name { get; set; }  = default!;
-    
+    public string Name { get; set; } = default!;
+
     /// <summary>
     /// 描述
     /// </summary>
-    public string Description { get; set; }  = default!;
-    
+    public string Description { get; set; } = default!;
+
     /// <summary>
     /// 排序
     /// </summary>
-    public int Sort { get; set; } 
-    
+    public int Sort { get; set; }
+
     /// <summary>
     /// 父级权限
     /// </summary>
-    public long? ParentId { get; set; } 
-    
+    public long? ParentId { get; set; }
+
 }

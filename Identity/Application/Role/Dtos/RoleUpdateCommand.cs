@@ -10,11 +10,11 @@ public partial class RoleUpdateCommand : BaseDto<long>, IRequest<RoleDto>
     /// <summary>
     /// 角色名称
     /// </summary>
-    public string Name { get; set; }  = default!;
-    
+    public string Name { get; set; } = default!;
+
     /// <summary>
     /// 角色描述
     /// </summary>
-    public string? Description { get; set; }  = default!;
-    
+    public string? Description { get; set; } = default!;
+
 }

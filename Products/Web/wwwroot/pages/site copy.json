@@ -1,0 +1,84 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "pages": [
+      {
+        "label": "Home",
+        "url": "/"
+      },
+      {
+        "label": "",
+        "children": [
+          {
+            "label": "系统管理",
+            "url": "/sys",
+            "icon": "fa fa-cube",
+            "children": [
+              {
+                "label": "用户管理",
+                "url": "/sys/users",
+                "redirect": "/sys/users/list",
+                "icon": "fa fa-cube",
+                "children": [
+                  {
+                    "label": "用户列表",
+                    "url": "/sys/users/list",
+                    "icon": "fa fa-list",
+                    "schemaApi": "get:./pages/sys/users/list.json"
+                  },
+                  {
+                    "label": "新增用户",
+                    "url": "/sys/users/new",
+                    "icon": "fa fa-plus",
+                    "schemaApi": "get:./pages/sys/users/new.json"
+                  },
+                  {
+                    "label": "查看用户",
+                    "url": "/sys/users/:id",
+                    "schemaApi": "get:./pages/sys/users/view.json"
+                  },
+                  {
+                    "label": "修改用户",
+                    "url": "/sys/users/:id/edit",
+                    "schemaApi": "get:./pages/sys/users/edit.json"
+                  }
+                ]
+              },
+              {
+                "label": "角色管理",
+                "url": "/sys/roles",
+                "redirect": "/sys/roles/list",
+                "icon": "fa fa-cube",
+                "children": [
+                  {
+                    "label": "角色列表",
+                    "url": "/sys/roles/list",
+                    "icon": "fa fa-list",
+                    "schemaApi": "get:./pages/sys/roles/list.json"
+                  },
+                  {
+                    "label": "新增角色",
+                    "url": "/sys/roles/new",
+                    "icon": "fa fa-plus",
+                    "schemaApi": "get:./pages/sys/roles/new.json"
+                  },
+                  {
+                    "label": "查看角色",
+                    "url": "/sys/roles/:id",
+                    "schemaApi": "get:./pages/sys/roles/view.json"
+                  },
+                  {
+                    "label": "修改角色",
+                    "url": "/sys/roles/:id/edit",
+                    "schemaApi": "get:./pages/sys/roles/edit.json"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

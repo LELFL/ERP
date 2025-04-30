@@ -8,10 +8,10 @@ namespace Commands;
 
 public class UserCreateCommandHandler : IRequestHandler<UserCreateCommand, UserDto>
 {
-    private readonly IRepository<User,long> _repository;
+    private readonly IRepository<User, long> _repository;
     private readonly IPasswordEncryptor _passwordEncryptor;
 
-    public UserCreateCommandHandler(IRepository<User, long> repository,IPasswordEncryptor passwordEncryptor)
+    public UserCreateCommandHandler(IRepository<User, long> repository, IPasswordEncryptor passwordEncryptor)
     {
         _repository = repository;
         _passwordEncryptor = passwordEncryptor;

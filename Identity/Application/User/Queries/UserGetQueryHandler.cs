@@ -17,6 +17,6 @@ public class UserGetQueryHandler : IRequestHandler<UserQuery, UserDto>
     public async Task<UserDto> Handle(UserQuery request, CancellationToken cancellationToken)
     {
         var entity = await _repository.GetAsync(request.Id);
-        return entity.Adapt<UserDto>(); 
+        return entity.Adapt<UserDto>();
     }
 }

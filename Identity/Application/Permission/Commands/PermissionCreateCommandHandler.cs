@@ -7,7 +7,7 @@ namespace Commands;
 
 public class PermissionCreateCommandHandler : IRequestHandler<PermissionCreateCommand, PermissionDto>
 {
-    private readonly IRepository<Permission,long> _repository;
+    private readonly IRepository<Permission, long> _repository;
 
     public PermissionCreateCommandHandler(IRepository<Permission, long> repository)
     {

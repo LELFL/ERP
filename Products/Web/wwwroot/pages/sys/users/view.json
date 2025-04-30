@@ -1,0 +1,83 @@
+{
+  "type": "page",
+  "title": "查看用户",
+  "data": {
+    "id": "${params.id}"
+  },
+  "remark": null,
+  "toolbar": [
+    {
+      "type": "button",
+      "actionType": "link",
+      "link": "${SELF_HOST}/sys/users/list",
+      "label": "返回列表"
+    }
+  ],
+  "body": [
+    {
+      "type": "form",
+      "title": "查看数据",
+      "mode": "flex",
+      "labelAlign": "top",
+      "dsType": "api",
+      "feat": "View",
+      "initApi": {
+        "url": "/api/Users/$id",
+        "method": "get"
+      },
+      "body": [
+        {
+          "name": "name",
+          "label": "名称",
+          "row": 0,
+          "type": "input-text",
+          "colSize": "1/4"
+        },
+        {
+          "name": "nickname",
+          "label": "昵称",
+          "row": 0,
+          "type": "input-text",
+          "colSize": "1/4"
+        },
+        {
+          "name": "phoneNumber",
+          "label": "电话",
+          "row": 0,
+          "type": "input-text",
+          "colSize": "1/4"
+        },
+        {
+          "name": "email",
+          "label": "邮箱",
+          "row": 0,
+          "type": "input-text",
+          "colSize": "1/4"
+        },
+        {
+          "name": "isActive",
+          "label": "状态",
+          "row": 1,
+          "type": "mapping",
+          "colSize": "1",
+          "map": {
+            "0": "<span class='label label-danger'>未激活</span>",
+            "1": "<span class='label label-success'>已激活</span>"
+          }
+        }
+      ],
+      "static": true,
+      "onEvent": {
+        "submitSucc": {
+          "actions": [
+            {
+              "actionType": "search",
+              "groupType": "component",
+              "componentId": "u:fe8a5d527bb1"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

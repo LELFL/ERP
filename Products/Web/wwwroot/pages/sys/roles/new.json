@@ -1,0 +1,68 @@
+{
+  "type": "page",
+  "title": "新增角色",
+  "remark": null,
+  "toolbar": [
+    {
+      "type": "button",
+      "actionType": "link",
+      "link": "${SELF_HOST}/sys/roles/list",
+      "label": "返回列表"
+    }
+  ],
+  "body": [
+    {
+      "id": "u:c35634af0ffd",
+      "type": "form",
+      "title": "",
+      "mode": "flex",
+      "labelAlign": "top",
+      "dsType": "api",
+      "feat": "Insert",
+      "body": [
+        {
+          "name": "name",
+          "label": "名称",
+          "row": 0,
+          "type": "input-text"
+        },
+        {
+          "name": "description",
+          "label": "说明",
+          "row": 1,
+          "type": "input-text"
+        }
+      ],
+      "api": {
+        "url": "/api/Roles",
+        "method": "post",
+        "requestAdaptor": "",
+        "adaptor": "",
+        "messages": {}
+      },
+      "resetAfterSubmit": true,
+      "actions": [
+        {
+          "type": "button",
+          "actionType": "submit",
+          "label": "提交",
+          "level": "primary"
+        }
+      ],
+      "onEvent": {
+        "submitSucc": {
+          "actions": [
+            {
+              "ignoreError": false,
+              "actionType": "url",
+              "args": {
+                "url": "${SELF_HOST}/sys/roles/list",
+                "blank": false
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

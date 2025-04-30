@@ -1,7 +1,6 @@
 ﻿using ELF.Data;
 using ELF.Infrastructure.Data;
 using ELF.Infrastructure.Data.Interceptors;
-using ELF.Interfaces.Permissions;
 using Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -46,7 +45,17 @@ public static class DependencyInjection
             options.UseOpenIddict();
         });
 
-        ConfigureAuthentication(services, configuration);
+        builder.Services.AddHttpContextAccessor();
+        builder.Services.AddScoped<IUser, CurrentUser>();
+
+        // 配置OpenIddict
+        services.AddOpenIddict()
+            // 配置 OpenIddict 核心组件
+            .AddCore(options =>
+            {
+                options.UseEntityFrameworkCore()
+                       .UseDbContext<ApplicationDbContext>();
+            });
 
         services.AddScoped<ApplicationDbContextInitialiser>();
         services.AddSingleton(TimeProvider.System);
@@ -73,81 +82,5 @@ public static class DependencyInjection
         YitIdHelper.SetIdGenerator(options);
 
         // 以上过程只需全局一次，且应在生成ID之前完成。
-    }
-
-    private static void ConfigureAuthentication(IServiceCollection services, IConfiguration configuration)
-    {
-        var IssuerSigningKey = configuration["JWT:IssuerSigningKey"];
-        var EncryptionKey = configuration["JWT:EncryptionKey"];
-        if (string.IsNullOrEmpty(IssuerSigningKey)
-            || string.IsNullOrEmpty(EncryptionKey))
-        {
-            throw new ArgumentNullException(nameof(IssuerSigningKey), "请配置证书密钥！");
-        }
-
-        // 配置OpenIddict
-        services.AddOpenIddict()
-            // 配置 OpenIddict 核心组件
-            .AddCore(options =>
-            {
-                options.UseEntityFrameworkCore()
-                       .UseDbContext<ApplicationDbContext>();
-            })
-            // 配置 OpenIddict 服务器
-            .AddServer(options =>
-            {
-                #region 模式
-                //1.授权码模式
-                options.AllowAuthorizationCodeFlow();
-                //2. 简化模式
-                //     适用于无法进行客户端认证的客户端，如纯前端应用。由于安全性较低，这种模式已不再推荐使用。
-                //3. 密码模式
-                options.AllowPasswordFlow();
-                //4. 客户端凭据模式
-                options.AllowClientCredentialsFlow();
-                #endregion
-                options.AllowRefreshTokenFlow();
-                //options.UseReferenceAccessTokens();
-
-                //// Accept anonymous clients (i.e clients that don't send a client_id).
-                //options.AcceptAnonymousClients();
-
-                #region 证书
-                #endregion
-
-                #region 签名密钥
-                options
-                    .AddDevelopmentEncryptionCertificate()
-                    .AddDevelopmentSigningCertificate();
-                #endregion
-
-                #region 其他必要的配置
-                //token过期时间
-                options.SetAccessTokenLifetime(TimeSpan.FromSeconds(300));
-                options.SetRefreshTokenLifetime(TimeSpan.FromDays(3));
-
-                // 设置令牌和授权端点
-                options.SetTokenEndpointUris("/connect/token")
-                       .SetAuthorizationEndpointUris("/connect/authorize")
-                       .SetUserInfoEndpointUris("/connect/userinfo")
-                       ;
-                #endregion
-                ;
-
-                // Register the ASP.NET Core host and configure the ASP.NET Core options.
-                options.UseAspNetCore()
-                       .EnableTokenEndpointPassthrough();
-            })
-            .AddValidation(options =>
-            {
-                // Import the configuration from the local OpenIddict server instance.
-                options.UseLocalServer();
-
-                // Register the ASP.NET Core host.
-                options.UseAspNetCore();
-                //// 配置受众验证
-                //options.AddAudiences("api");
-            });
-
     }
 }
