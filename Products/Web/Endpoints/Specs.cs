@@ -17,23 +17,23 @@ public static class Specs
         ;
         group.MapGet("{id}", GetAysnc)
             .WithName($"Spec{nameof(GetAysnc)}")
-            .WithTags(PermissionConstants.Specs_Detail)
+            .WithPermission(PermissionConstants.Specs_Detail)
             .WithDisplayName("获取商品规格名称详情");
         group.MapGet("", GetListAsync)
             .WithName($"Spec{nameof(GetListAsync)}")
-            .WithTags(PermissionConstants.Specs_List)
+            .WithPermission(PermissionConstants.Specs_List)
             .WithDisplayName("获取商品规格名称列表");
         group.MapPost("", CreateAsync)
             .WithName($"Spec{nameof(CreateAsync)}")
-            .WithTags(PermissionConstants.Specs_Create)
+            .WithPermission(PermissionConstants.Specs_Create)
             .WithDisplayName("创建商品规格名称");
         group.MapPut("{id}", UpdateAsync)
             .WithName($"Spec{nameof(UpdateAsync)}")
-            .WithTags(PermissionConstants.Specs_Update)
+            .WithPermission(PermissionConstants.Specs_Update)
             .WithDisplayName("更新商品规格名称");
         group.MapDelete("{id}", DeleteAsync)
             .WithName($"Spec{nameof(DeleteAsync)}")
-            .WithTags(PermissionConstants.Specs_Delete)
+            .WithPermission(PermissionConstants.Specs_Delete)
             .WithDisplayName("删除商品规格名称");
     }
 

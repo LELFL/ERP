@@ -185,6 +185,14 @@ public class EFCoreRepository<TEntity, TKey> : IRepository<TEntity, TKey> where 
             return await query.Where(predicate).ToListAsync(cancellationToken);
     }
 
+    public async Task<T[]> ToArrayAsync<T>(IQueryable<T> query, Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default)
+    {
+        if (predicate is null)
+            return await query.ToArrayAsync(cancellationToken);
+        else
+            return await query.Where(predicate).ToArrayAsync(cancellationToken);
+    }
+
     public TEntity Update(TKey id, object input)
     {
         var entity = Get(id);

@@ -16,7 +16,7 @@ public class Category : BaseEntity<long>
     public long? ImageId { get; set; }
 
     /// <summary>
-    /// 排序方式
+    /// 排序
     /// </summary>
     public int Sort { get; set; } = 0;
 
@@ -38,5 +38,5 @@ public class Category : BaseEntity<long>
     /// <summary>
     /// 子分类
     /// </summary>
-    public List<Category>? Children { get; set; } = [];
+    public List<Category> Children { get; set; } = [];
 }

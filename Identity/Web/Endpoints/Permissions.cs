@@ -17,23 +17,23 @@ public static class Permissions
         ;
         group.MapGet("{id}", GetAysnc)
             .WithName($"Permission{nameof(GetAysnc)}")
-            .WithTags(PermissionConstants.Permissions_Detail)
+            .WithPermission(PermissionConstants.Permissions_Detail)
             .WithDisplayName("获取权限详情");
         group.MapGet("", GetListAsync)
             .WithName($"Permission{nameof(GetListAsync)}")
-            .WithTags(PermissionConstants.Permissions_List)
+            .WithPermission(PermissionConstants.Permissions_List)
             .WithDisplayName("获取权限列表");
         group.MapPost("", CreateAsync)
             .WithName($"Permission{nameof(CreateAsync)}")
-            .WithTags(PermissionConstants.Permissions_Create)
+            .WithPermission(PermissionConstants.Permissions_Create)
             .WithDisplayName("创建权限");
         group.MapPut("{id}", UpdateAsync)
             .WithName($"Permission{nameof(UpdateAsync)}")
-            .WithTags(PermissionConstants.Permissions_Update)
+            .WithPermission(PermissionConstants.Permissions_Update)
             .WithDisplayName("更新权限");
         group.MapDelete("{id}", DeleteAsync)
             .WithName($"Permission{nameof(DeleteAsync)}")
-            .WithTags(PermissionConstants.Permissions_Delete)
+            .WithPermission(PermissionConstants.Permissions_Delete)
             .WithDisplayName("删除权限");
     }
 

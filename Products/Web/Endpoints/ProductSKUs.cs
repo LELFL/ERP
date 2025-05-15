@@ -17,23 +17,23 @@ public static class ProductSKUs
         ;
         group.MapGet("{id}", GetAysnc)
             .WithName($"ProductSKU{nameof(GetAysnc)}")
-            .WithTags(PermissionConstants.ProductSKUs_Detail)
+            .WithPermission(PermissionConstants.ProductSKUs_Detail)
             .WithDisplayName("获取商品规格详情");
         group.MapGet("", GetListAsync)
             .WithName($"ProductSKU{nameof(GetListAsync)}")
-            .WithTags(PermissionConstants.ProductSKUs_List)
+            .WithPermission(PermissionConstants.ProductSKUs_List)
             .WithDisplayName("获取商品规格列表");
         group.MapPost("", CreateAsync)
             .WithName($"ProductSKU{nameof(CreateAsync)}")
-            .WithTags(PermissionConstants.ProductSKUs_Create)
+            .WithPermission(PermissionConstants.ProductSKUs_Create)
             .WithDisplayName("创建商品规格");
         group.MapPut("{id}", UpdateAsync)
             .WithName($"ProductSKU{nameof(UpdateAsync)}")
-            .WithTags(PermissionConstants.ProductSKUs_Update)
+            .WithPermission(PermissionConstants.ProductSKUs_Update)
             .WithDisplayName("更新商品规格");
         group.MapDelete("{id}", DeleteAsync)
             .WithName($"ProductSKU{nameof(DeleteAsync)}")
-            .WithTags(PermissionConstants.ProductSKUs_Delete)
+            .WithPermission(PermissionConstants.ProductSKUs_Delete)
             .WithDisplayName("删除商品规格");
     }
 

@@ -12,31 +12,36 @@ internal class IdentityService : IIdentityService
     private static readonly int MaxRetryCount = 3;
 
     private readonly IDatabase _redis;
+    private readonly IIdentityRemoteService _identityRemoteService;
 
-    public IdentityService(
-        IConnectionMultiplexer connectionMultiplexer)
+    public IdentityService(IConnectionMultiplexer connectionMultiplexer, IIdentityRemoteService identityRemoteService)
     {
         _redis = connectionMultiplexer.GetDatabase();
+        _identityRemoteService = identityRemoteService;
     }
 
     public async Task<bool> AuthorizeAsync(long id, string policy)
     {
         var cacheKey = GetCacheKey(id);
+
+        // 直接检查权限是否存在
+        if (await _redis.SetContainsAsync(cacheKey, policy))
+            return true;
+
         var retryCount = 0;
 
-        while (retryCount < MaxRetryCount)
+        if (!_redis.KeyExists(cacheKey))
         {
-            // 直接检查权限是否存在
-            if (await _redis.SetContainsAsync(cacheKey, policy))
-                return true;
+            while (retryCount < MaxRetryCount)
+            {
+                // 尝试加载缓存
+                var (isLoaded, hasPermission) = await TryLoadCacheWithLockAsync(id, cacheKey, policy);
+                if (isLoaded)
+                    return hasPermission;
 
-            // 尝试加载缓存
-            var (isLoaded, hasPermission) = await TryLoadCacheWithLockAsync(id, cacheKey, policy);
-            if (isLoaded)
-                return hasPermission;
-
-            retryCount++;
-            await Task.Delay(100 * retryCount);
+                retryCount++;
+                await Task.Delay(100 * retryCount);
+            }
         }
 
         return false; // 降级策略：拒绝访问或走数据库查询
@@ -81,7 +86,7 @@ internal class IdentityService : IIdentityService
             if (await _redis.SetContainsAsync(cacheKey, policy))
                 return (true, true);
 
-            var permissions = await GetUserPermissionIds(userId);
+            var permissions = await GetCurrentUserPermissions();
             await HandlePermissionUpdateAsync(cacheKey, permissions);
 
             return (true, permissions.Contains(policy));
@@ -123,10 +128,11 @@ internal class IdentityService : IIdentityService
     private static string GetCacheKey(long userId) => $"{IDENTITY_PERMISSIONS_KEY}{userId}";
     private static string GetLockKey(string cacheKey) => $"{cacheKey}{LOCK_SUFFIX}";
 
-    private async Task<HashSet<string>> GetUserPermissionIds(long id)
+    private async Task<HashSet<string>> GetCurrentUserPermissions()
     {
         // 这里模拟从数据库加载权限
-        return await Task.FromResult(new HashSet<string>());
+        var permissions = await _identityRemoteService.GetUserPermissionsAsync();
+        return [.. permissions];
     }
     #endregion
 }

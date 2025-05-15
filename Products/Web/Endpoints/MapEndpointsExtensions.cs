@@ -1,5 +1,5 @@
 ﻿
-namespace ELF.Web.Infrastructure;
+namespace Microsoft.AspNetCore.Builder;
 
 public static class MapEndpointsExtensions
 {

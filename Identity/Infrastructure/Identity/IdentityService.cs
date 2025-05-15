@@ -27,21 +27,25 @@ internal class IdentityService : IIdentityService
     public async Task<bool> AuthorizeAsync(long id, string policy)
     {
         var cacheKey = GetCacheKey(id);
+
+        // 直接检查权限是否存在
+        if (await _redis.SetContainsAsync(cacheKey, policy))
+            return true;
+
         var retryCount = 0;
 
-        while (retryCount < MaxRetryCount)
+        if (!_redis.KeyExists(cacheKey))
         {
-            // 直接检查权限是否存在
-            if (await _redis.SetContainsAsync(cacheKey, policy))
-                return true;
+            while (retryCount < MaxRetryCount)
+            {
+                // 尝试加载缓存
+                var (isLoaded, hasPermission) = await TryLoadCacheWithLockAsync(id, cacheKey, policy);
+                if (isLoaded)
+                    return hasPermission;
 
-            // 尝试加载缓存
-            var (isLoaded, hasPermission) = await TryLoadCacheWithLockAsync(id, cacheKey, policy);
-            if (isLoaded)
-                return hasPermission;
-
-            retryCount++;
-            await Task.Delay(100 * retryCount);
+                retryCount++;
+                await Task.Delay(100 * retryCount);
+            }
         }
 
         return false; // 降级策略：拒绝访问或走数据库查询
@@ -86,7 +90,7 @@ internal class IdentityService : IIdentityService
             if (await _redis.SetContainsAsync(cacheKey, policy))
                 return (true, true);
 
-            var permissions = await GetUserPermissionIds(userId);
+            var permissions = await GetUserPermissions(userId);
             await HandlePermissionUpdateAsync(cacheKey, permissions);
 
             return (true, permissions.Contains(policy));
@@ -128,7 +132,7 @@ internal class IdentityService : IIdentityService
     private static string GetCacheKey(long userId) => $"{IDENTITY_PERMISSIONS_KEY}{userId}";
     private static string GetLockKey(string cacheKey) => $"{cacheKey}{LOCK_SUFFIX}";
 
-    private async Task<HashSet<string>> GetUserPermissionIds(long id)
+    public async Task<HashSet<string>> GetUserPermissions(long id)
     {
         var query = _repository.AsNoTracking()
             .Where(x => x.Id == id)
@@ -137,7 +141,7 @@ internal class IdentityService : IIdentityService
             .Select(x => x.Name)
             .Distinct();
 
-        return new HashSet<string>(await query.ToListAsync());
+        return [.. await query.ToListAsync()];
     }
     #endregion
 }

@@ -17,31 +17,31 @@ public static class Roles
         ;
         group.MapGet("{id}", GetAysnc)
             .WithName($"Role{nameof(GetAysnc)}")
-            .WithTags(PermissionConstants.Roles_Detail)
+            .WithPermission(PermissionConstants.Roles_Detail)
             .WithDisplayName("获取角色详情");
         group.MapGet("", GetListAsync)
             .WithName($"Role{nameof(GetListAsync)}")
-            .WithTags(PermissionConstants.Roles_List)
+            .WithPermission(PermissionConstants.Roles_List)
             .WithDisplayName("获取角色列表");
         group.MapPost("", CreateAsync)
             .WithName($"Role{nameof(CreateAsync)}")
-            .WithTags(PermissionConstants.Roles_Create)
+            .WithPermission(PermissionConstants.Roles_Create)
             .WithDisplayName("创建角色");
         group.MapPut("{id}", UpdateAsync)
             .WithName($"Role{nameof(UpdateAsync)}")
-            .WithTags(PermissionConstants.Roles_Update)
+            .WithPermission(PermissionConstants.Roles_Update)
             .WithDisplayName("更新角色");
         group.MapDelete("{id}", DeleteAsync)
             .WithName($"Role{nameof(DeleteAsync)}")
-            .WithTags(PermissionConstants.Roles_Delete)
+            .WithPermission(PermissionConstants.Roles_Delete)
             .WithDisplayName("删除角色");
         group.MapGet("{id}/Permissions", GetPermissionsAsync)
             .WithName($"Role{nameof(GetPermissionsAsync)}")
-            .WithTags(PermissionConstants.Roles_GetPermissions)
+            .WithPermission(PermissionConstants.Roles_GetPermissions)
             .WithDisplayName("获取角色权限");
         group.MapPut("{id}/Permissions", PermissionsAsync)
             .WithName($"Role{nameof(PermissionsAsync)}")
-            .WithTags(PermissionConstants.Roles_SetPermissions)
+            .WithPermission(PermissionConstants.Roles_SetPermissions)
             .WithDisplayName("分配权限");
     }
 

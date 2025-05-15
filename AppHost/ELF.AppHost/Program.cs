@@ -41,7 +41,7 @@ var identityService = builder
                        .WaitFor(identityserviceDb);
 var identityEndpoint = identityService.GetEndpoint("https");
 
-builder.AddProject<ProductWeb>("product-web",
+var productWeb = builder.AddProject<ProductWeb>("product-web",
         configure: static project =>
         {
             project.ExcludeLaunchProfile = false;
@@ -51,6 +51,7 @@ builder.AddProject<ProductWeb>("product-web",
                        .WithReference(cache)
                        .WithReference(productDb)
                        .WaitFor(productDb)
+                       .WithReference(identityService)
     .WithEnvironment("OpenIddict__Issuer", identityEndpoint);
 
 

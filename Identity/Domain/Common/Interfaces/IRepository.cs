@@ -64,6 +64,8 @@ public interface IRepository<TEntity, TKey> where TEntity : class, new()
     IQueryable<TEntity> AsNoTracking();
 
     Task<List<T>> ToListAsync<T>(IQueryable<T> query, Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default);
+
+    Task<T[]> ToArrayAsync<T>(IQueryable<T> query, Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default);
     Task<int> CountAsync<T>(IQueryable<T> query, Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default);
     Task<bool> AnyAsync<T>(IQueryable<T> query, Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default);
     Task<T?> FirstOrDefaultAsync<T>(IQueryable<T> query, Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default);

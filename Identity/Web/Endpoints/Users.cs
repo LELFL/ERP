@@ -18,46 +18,48 @@ public static class Users
         ;
         group.MapGet("{id}", GetAysnc)
             .WithName($"User{nameof(GetAysnc)}")
-            .WithTags(PermissionConstants.Users_Detail)
+            .WithPermission(PermissionConstants.Users_Detail)
             .WithDisplayName("获取用户详情");
         group.MapGet("", GetListAsync)
             .WithName($"User{nameof(GetListAsync)}")
-            .WithTags(PermissionConstants.Users_List)
+            .WithPermission(PermissionConstants.Users_List)
             .WithDisplayName("获取用户列表");
         group.MapPost("", CreateAsync)
             .WithName($"User{nameof(CreateAsync)}")
-            .WithTags(PermissionConstants.Users_Create)
+            .WithPermission(PermissionConstants.Users_Create)
             .WithDisplayName("创建用户");
         group.MapPut("{id}", UpdateAsync)
             .WithName($"User{nameof(UpdateAsync)}")
-            .WithTags(PermissionConstants.Users_Update)
+            .WithPermission(PermissionConstants.Users_Update)
             .WithDisplayName("更新用户");
         group.MapDelete("{id}", DeleteAsync)
             .WithName($"User{nameof(DeleteAsync)}")
-            .WithTags(PermissionConstants.Users_Delete)
+            .WithPermission(PermissionConstants.Users_Delete)
             .WithDisplayName("删除用户");
         group.MapPost("{id}/ResetPassword", ResetPasswordAsync)
             .WithName($"User{nameof(ResetPasswordAsync)}")
-            .WithTags(PermissionConstants.Users_ResetPassword)
+            .WithPermission(PermissionConstants.Users_ResetPassword)
             .WithDisplayName("重置密码");
         group.MapGet("{id}/Roles", GetRolesAsync)
             .WithName($"User{nameof(GetRolesAsync)}")
-            .WithTags(PermissionConstants.Users_GetRoles)
+            .WithPermission(PermissionConstants.Users_GetRoles)
             .WithDisplayName("获取用户角色");
         group.MapPut("{id}/Roles", SetRolesAsync)
             .WithName($"User{nameof(SetRolesAsync)}")
-            .WithTags(PermissionConstants.Users_SetRoles)
+            .WithPermission(PermissionConstants.Users_SetRoles)
             .WithDisplayName("设置用户角色");
         group.MapGet("CurrentUser", GetCurrentUserAsync)
             .WithName($"User{nameof(GetCurrentUserAsync)}")
-            .WithTags(PermissionConstants.Users_GetCurrentUser)
-            .WithDisplayName("获取当前用户信息")
-            .RequireAuthorization();
+            //.WithPermission(PermissionConstants.Users_GetCurrentUser)
+            .WithDisplayName("获取当前用户信息");
         group.MapPut("UpdatePassword", UpdatePasswordAsync)
             .WithName($"User{nameof(UpdatePasswordAsync)}")
-            .WithTags(PermissionConstants.Users_UpdatePassword)
-            .WithDisplayName("修改密码")
-            .RequireAuthorization();
+            //.WithPermission(PermissionConstants.Users_UpdatePassword)
+            .WithDisplayName("修改密码");
+        group.MapGet("Permissions", GetPermissionsAsync)
+            .WithName($"User{nameof(GetPermissionsAsync)}")
+            //.WithPermission(PermissionConstants.Users_GetCurrentUser)
+            .WithDisplayName("获取当前用户所有权限");
     }
 
     public static async Task<Ok<UserDto>> GetAysnc(ISender sender, long id)
@@ -136,5 +138,14 @@ public static class Users
         long userId = long.Parse(user.Id);
         await sender.Send(new UpdatePasswordCommand(userId, request.OldPassword, request.NewPassword));
         return TypedResults.NoContent();
+    }
+
+    public static async Task<Ok<string[]>> GetPermissionsAsync(ISender sender, IUser user)
+    {
+        if (user.Id == null) return TypedResults.Ok<string[]>([]);
+        long userId = long.Parse(user.Id);
+        var permissions = await sender.Send(new UserGetPermissionsQuery(userId));
+
+        return TypedResults.Ok(permissions ?? []);
     }
 }

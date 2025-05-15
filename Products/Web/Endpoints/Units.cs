@@ -17,23 +17,23 @@ public static class Units
         ;
         group.MapGet("{id}", GetAysnc)
             .WithName($"Unit{nameof(GetAysnc)}")
-            .WithTags(PermissionConstants.Units_Detail)
+            .WithPermission(PermissionConstants.Units_Detail)
             .WithDisplayName("获取计量单位详情");
         group.MapGet("", GetListAsync)
             .WithName($"Unit{nameof(GetListAsync)}")
-            .WithTags(PermissionConstants.Units_List)
+            .WithPermission(PermissionConstants.Units_List)
             .WithDisplayName("获取计量单位列表");
         group.MapPost("", CreateAsync)
             .WithName($"Unit{nameof(CreateAsync)}")
-            .WithTags(PermissionConstants.Units_Create)
+            .WithPermission(PermissionConstants.Units_Create)
             .WithDisplayName("创建计量单位");
         group.MapPut("{id}", UpdateAsync)
             .WithName($"Unit{nameof(UpdateAsync)}")
-            .WithTags(PermissionConstants.Units_Update)
+            .WithPermission(PermissionConstants.Units_Update)
             .WithDisplayName("更新计量单位");
         group.MapDelete("{id}", DeleteAsync)
             .WithName($"Unit{nameof(DeleteAsync)}")
-            .WithTags(PermissionConstants.Units_Delete)
+            .WithPermission(PermissionConstants.Units_Delete)
             .WithDisplayName("删除计量单位");
     }
 

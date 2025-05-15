@@ -56,6 +56,9 @@ public class ApplicationDbContextInitialiser
     {
         try
         {
+            //using var scope = serviceProvider.CreateScope();
+            //var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            //await db.Database.EnsureCreatedAsync();
             await Task.CompletedTask;
         }
         catch (Exception ex)

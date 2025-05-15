@@ -1,7 +1,7 @@
 ﻿using ELF.Endpoints;
 using ELF.Web.Endpoints;
 
-namespace ELF.Web.Infrastructure;
+namespace Microsoft.AspNetCore.Builder;
 
 public static class MapEndpointsExtensions
 {
