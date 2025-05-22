@@ -9,6 +9,7 @@ public class PermissionConstants
     public const string Permissions_Create = "Permissions:Create";
     public const string Permissions_Update = "Permissions:Update";
     public const string Permissions_Delete = "Permissions:Delete";
+    public const string Permissions_Upload = "Permissions:Upload";
 
     public const string Roles = "Roles";
     public const string Roles_Detail = "Roles:Detail";

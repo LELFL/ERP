@@ -2,6 +2,7 @@ using Constants;
 using Dtos;
 using ELF.Common.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using OfficeOpenXml;
 
 namespace ELF.Web.Endpoints;
 
@@ -35,6 +36,11 @@ public static class Permissions
             .WithName($"Permission{nameof(DeleteAsync)}")
             .WithPermission(PermissionConstants.Permissions_Delete)
             .WithDisplayName("删除权限");
+        group.MapDelete("/Upload", UploadAsync)
+            .WithName($"Permission{nameof(UploadAsync)}")
+            .WithPermission(PermissionConstants.Permissions_Upload)
+            .WithDisplayName("导入权限")
+            .Accepts<IFormFile>("multipart/form-data");
     }
 
     public static async Task<Ok<PermissionDto>> GetAysnc(ISender sender, long id)
@@ -70,6 +76,55 @@ public static class Permissions
     public static async Task<NoContent> DeleteAsync(ISender sender, long id)
     {
         await sender.Send(new PermissionDeleteCommand(id));
+
+        return TypedResults.NoContent();
+    }
+
+    public static async Task<Results<NoContent, BadRequest<string>>> UploadAsync(
+        ISender sender, IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return TypedResults.BadRequest("未上传文件");
+
+        var permissions = new List<PermissionImportCommand>();
+
+        try
+        {
+            using var stream = new MemoryStream();
+            await file.CopyToAsync(stream);
+            using var package = new ExcelPackage(stream);
+            var worksheet = package.Workbook.Worksheets[0];
+            var rowCount = worksheet.Dimension.Rows;
+
+            for (int row = 2; row <= rowCount; row++) // 假设第一行为表头
+            {
+                var name = worksheet.Cells[row, 1].Text?.Trim();
+                var description = worksheet.Cells[row, 2].Text?.Trim();
+                var sortText = worksheet.Cells[row, 3].Text?.Trim();
+                var parentName = worksheet.Cells[row, 4].Text?.Trim();
+
+                if (string.IsNullOrWhiteSpace(name))
+                    continue; // 跳过无效行
+
+                var command = new PermissionImportCommand
+                {
+                    Name = name,
+                    Description = description ?? "",
+                    Sort = int.TryParse(sortText, out var sort) ? sort : 0,
+                    ParentName = string.IsNullOrWhiteSpace(parentName) ? null : parentName
+                };
+                permissions.Add(command);
+            }
+
+            foreach (var cmd in permissions)
+            {
+                await sender.Send(cmd);
+            }
+        }
+        catch (Exception ex)
+        {
+            return TypedResults.BadRequest($"导入失败: {ex.Message}");
+        }
 
         return TypedResults.NoContent();
     }
